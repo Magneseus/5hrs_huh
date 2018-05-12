@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		// Slowing down
-		if (horizontal == 0 && Mathf.Abs(rb.velocity.x) > 0.1f)
+		if (Mathf.Abs(rb.velocity.x) > 0.1f)
 		{
 			rb.AddForce(new Vector2(Mathf.Sign(rb.velocity.x) * -1f * slowForce, 0f));
 		}
