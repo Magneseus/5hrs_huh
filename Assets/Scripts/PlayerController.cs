@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 	public float jumpForce;
 	public Transform groundLoc;
+	public PhysicsMaterial2D airMaterial;
 
     private Interactable interactable = null;
 	
@@ -34,11 +35,16 @@ public class PlayerController : MonoBehaviour {
 
 		// Checking for ground
 		grounded = Physics2D.Linecast(transform.position, groundLoc.position, 1 << LayerMask.NameToLayer("Ground"));
+		
+		// Resetting the physics material
+		if (grounded)
+			rb.sharedMaterial = null;
 
 		// Jumping
         if (Input.GetButtonDown("Jump") && grounded)
         {
             rb.AddForce(new Vector2(0f, jumpForce));
+			rb.sharedMaterial = airMaterial;
         }
 	}
 
