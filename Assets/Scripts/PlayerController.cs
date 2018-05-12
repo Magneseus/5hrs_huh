@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour {
 	public float maxSpeed;
 	public float jumpForce;
 	public Transform groundLoc;
+
+    private Interactable interactable = null;
 	
 	private Rigidbody2D rb;
 	private bool grounded;
@@ -16,13 +18,17 @@ public class PlayerController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody2D>();
-
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		float vertical = Input.GetAxis("Vertical");
 		float horizontal = Input.GetAxis("Horizontal");
+        
+        if(Input.GetKeyUp(KeyCode.Q) && interactable != null)
+        {
+            interactable.Interact(this);
+        }
 
 		// Checking for ground
 		grounded = Physics2D.Linecast(transform.position, groundLoc.position, 1 << LayerMask.NameToLayer("Ground"));
@@ -63,4 +69,9 @@ public class PlayerController : MonoBehaviour {
 	{
 		
 	}
+
+    public void SetInteractable(Interactable interact)
+    {
+        interactable = interact;
+    }
 }
