@@ -13,13 +13,13 @@ public class PlayerController : MonoBehaviour {
 	private bool grounded;
 
 	// Use this for initialization
-	void Start () {
+	public virtual void Start () {
 		rb = GetComponent<Rigidbody2D>();
 
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	public virtual void Update () {
 		float vertical = Input.GetAxis("Vertical");
 		float horizontal = Input.GetAxis("Horizontal");
 
@@ -55,10 +55,5 @@ public class PlayerController : MonoBehaviour {
 		{
 			rb.velocity = new Vector2(Mathf.Sign(rb.velocity.x) * maxSpeed, rb.velocity.y);
 		}
-	}
-
-	void FixedUpdate()
-	{
-		
 	}
 }
