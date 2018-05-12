@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour {
 	
 	private Rigidbody2D rb;
 	private bool grounded;
+    private bool disabled = false;
 
 	// Use this for initialization
 	void Start () {
@@ -55,6 +56,7 @@ public class PlayerController : MonoBehaviour {
 		{
 			rb.velocity = new Vector2(Mathf.Sign(rb.velocity.x) * maxSpeed, rb.velocity.y);
 		}
+
 	}
 
 	void FixedUpdate()
