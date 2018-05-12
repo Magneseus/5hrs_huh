@@ -16,12 +16,12 @@ public class PlayerController : MonoBehaviour {
     private bool disabled = false;
 
 	// Use this for initialization
-	void Start () {
+	public virtual void Start () {
 		rb = GetComponent<Rigidbody2D>();
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	public virtual void Update () {
 		float vertical = Input.GetAxis("Vertical");
 		float horizontal = Input.GetAxis("Horizontal");
         
