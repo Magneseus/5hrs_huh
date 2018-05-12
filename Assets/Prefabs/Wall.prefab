@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4105743745114936}
   - component: {fileID: 212988565106218644}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4651715250605448}
   - component: {fileID: 61922114042558908}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
