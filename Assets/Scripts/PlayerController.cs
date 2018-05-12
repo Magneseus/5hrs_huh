@@ -25,7 +25,6 @@ public class PlayerController : MonoBehaviour {
 
 		// Checking for ground
 		grounded = Physics2D.Linecast(transform.position, groundLoc.position, 1 << LayerMask.NameToLayer("Ground"));
-		Debug.Log(grounded);
 
 		// Jumping
         if (Input.GetButtonDown("Jump") && grounded)
