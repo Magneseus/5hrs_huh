@@ -8,6 +8,7 @@ public class Movement : MonoBehaviour {
 	public float maxSpeed;
 
 	private Rigidbody2D rb;
+	private bool facingLeft = true;
 
 	// Use this for initialization
 	void Start () {
@@ -16,6 +17,11 @@ public class Movement : MonoBehaviour {
 
 	public void Move(float horizontal, float vertical)
 	{
+		if (horizontal > 0 && facingLeft)
+			Flip();
+		else if (horizontal < 0 && !facingLeft)
+			Flip();
+
 		// Horizontal movement
 		if (horizontal != 0 && horizontal * rb.velocity.x < maxSpeed)
 		{
@@ -39,5 +45,13 @@ public class Movement : MonoBehaviour {
 		{
 			rb.velocity = new Vector2(Mathf.Sign(rb.velocity.x) * maxSpeed, rb.velocity.y);
 		}
+	}
+
+	void Flip()
+	{
+		facingLeft = !facingLeft;
+		Vector3 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
 	}
 }
