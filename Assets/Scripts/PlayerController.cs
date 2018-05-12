@@ -56,9 +56,4 @@ public class PlayerController : MonoBehaviour {
 			rb.velocity = new Vector2(Mathf.Sign(rb.velocity.x) * maxSpeed, rb.velocity.y);
 		}
 	}
-
-	void FixedUpdate()
-	{
-		
-	}
 }
