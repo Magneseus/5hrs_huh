@@ -5,10 +5,13 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 	public float jumpForce;
 	public Transform groundLoc;
+
+    private Interactable interactable = null;
 	
 	private Rigidbody2D rb;
 	private Movement move;
 	private bool grounded;
+    private bool disabled = false;
 
 	// Use this for initialization
 	public virtual void Start () {
@@ -20,6 +23,11 @@ public class PlayerController : MonoBehaviour {
 	public virtual void Update () {
 		float vertical = Input.GetAxis("Vertical");
 		float horizontal = Input.GetAxis("Horizontal");
+        
+        if(Input.GetKeyUp(KeyCode.Q) && interactable != null)
+        {
+            interactable.Interact(this);
+        }
 
 		// Horizontal Movement
 		move.Move(horizontal, 0f);
@@ -33,4 +41,14 @@ public class PlayerController : MonoBehaviour {
             rb.AddForce(new Vector2(0f, jumpForce));
         }
 	}
+
+	void FixedUpdate()
+	{
+		
+	}
+
+    public void SetInteractable(Interactable interact)
+    {
+        interactable = interact;
+    }
 }
