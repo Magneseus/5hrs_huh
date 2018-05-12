@@ -4,59 +4,90 @@ using UnityEngine;
 
 public class MovementNode : Interactable {
 
-    private MovementNode north = null;
-    private MovementNode east = null;
-    private MovementNode south = null;
-    private MovementNode west = null;
+    public MovementNode north = null;
+    public MovementNode east = null;
+    public MovementNode south = null;
+    public MovementNode west = null;
+
+    public SpriteRenderer chevron;
 
     private PlayerController contains;
+
+    public override void Start()
+    {
+        base.Start();
+        chevron.enabled = false;
+    }
 
     public override void Interact(PlayerController pc)
     {
         // disable the player controller
-        base.Interact(pc);
+
         SetPlayer(pc);
-        contains.enabled = false;
+
+        base.Interact(contains);
+        contains.transform.gameObject.SetActive(false);
+
+
     }
 
     public void SetPlayer(PlayerController pc)
     {
         contains = pc;
-        contains.transform.position = this.transform.position;
+        if (contains)
+        {
+            contains.transform.position = this.transform.position;
+            chevron.enabled = true;
+        }
+        else
+        {
+            chevron.enabled = false;
+        }
     }
 
-    public void Update()
+    public virtual void LeaveNodeMap()
     {
-        Debug.Log("mn update");
+        contains.transform.gameObject.SetActive(true);
+        this.SetPlayer(null);
+    }
+
+    public virtual void Update()
+    {
+        if(!contains)
+        {
+            return;
+        }
+
         MovementNode newNode = null;
 
         // leave spot
-        if(Input.GetKeyUp(KeyCode.Q))
+        if(Input.GetKeyUp(KeyCode.Q) && !contains.interacting)
         {
-            contains.enabled = true;
-            contains = null;
+            LeaveNodeMap(); 
             return;
         }
         // moving up
-        else if(Input.GetButtonUp("Vertical") && Mathf.Sign(Input.GetAxis("Vertical")) > 0) 
+        else if(Input.GetButtonDown("Vertical") && Mathf.Sign(Input.GetAxis("Vertical")) > 0) 
         {
             newNode = north;
         }
         // moving down
-        else if (Input.GetButtonUp("Vertical") && Mathf.Sign(Input.GetAxis("Vertical")) < 0)
+        else if (Input.GetButtonDown("Vertical") && Mathf.Sign(Input.GetAxis("Vertical")) < 0)
         {
             newNode = south;
         }
         // moving right
-        else if (Input.GetButtonUp("Horizontal") && Mathf.Sign(Input.GetAxis("Horizontal")) > 0)
+        else if (Input.GetButtonDown("Horizontal") && Mathf.Sign(Input.GetAxis("Horizontal")) > 0)
         {
             newNode = east;
         }
         // moving left
-        else if (Input.GetButtonUp("Horizontal") && Mathf.Sign(Input.GetAxis("Horizontal")) < 0)
+        else if (Input.GetButtonDown("Horizontal") && Mathf.Sign(Input.GetAxis("Horizontal")) < 0)
         {
             newNode = west;
         }
+
+        contains.interacting = false;
 
         if (newNode)
         {

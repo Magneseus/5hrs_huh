@@ -8,11 +8,11 @@ public class PlayerController : MonoBehaviour {
 	public PhysicsMaterial2D airMaterial;
 
     private Interactable interactable = null;
+    public bool interacting = false;
 	
 	private Rigidbody2D rb;
 	private Movement move;
 	private bool grounded;
-    private bool disabled = false;
 
 	// Use this for initialization
 	public virtual void Start () {
@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour {
         
         if(Input.GetKeyUp(KeyCode.Q) && interactable != null)
         {
+            interacting = true;
             interactable.Interact(this);
         }
 
