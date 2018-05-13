@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour {
 	private Movement move;
 	private bool grounded;
 
-	private bool playerSelected = false;
+	protected bool playerSelected = false;
 
 	// Use this for initialization
 	public virtual void Start () {

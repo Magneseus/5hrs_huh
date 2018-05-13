@@ -55,6 +55,9 @@ public class WorldController : MonoBehaviour
 
 	void SetPlayerWei()
 	{
+		if (will.IsWeiPickedUp())
+			return;
+		
 		activeCharacter = wei;
 		will.SetPlayerSelected(false);
 		wei.SetPlayerSelected(true);

@@ -20,18 +20,21 @@ public class Will : PlayerController
 	public override void Update () {
 		base.Update();
 
-		if (Input.GetKeyDown(KeyCode.F) && guardTarget != null)
+		if (playerSelected)
 		{
-			guardTarget.Takedown();
-		}
-		else if (Input.GetKeyDown(KeyCode.F) && weiPickup != null)
-		{
-			PickupWei();
-		}
+			if (Input.GetKeyDown(KeyCode.F) && guardTarget != null)
+			{
+				guardTarget.Takedown();
+			}
+			else if (Input.GetKeyDown(KeyCode.F) && weiPickup != null)
+			{
+				PickupWei();
+			}
 
-		if (Input.GetKeyDown(KeyCode.S) && weiPickedUp)
-		{
-			DropWei();
+			if (Input.GetKeyDown(KeyCode.S) && weiPickedUp)
+			{
+				DropWei();
+			}
 		}
 	}
 
@@ -43,6 +46,11 @@ public class Will : PlayerController
 	public void SetWei(Wei wei)
 	{
 		weiPickup = wei;
+	}
+
+	public bool IsWeiPickedUp()
+	{
+		return weiPickedUp;
 	}
 
 	private void ThrowWei()

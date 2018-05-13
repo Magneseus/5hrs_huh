@@ -15,19 +15,8 @@ public class Movement : MonoBehaviour {
 		rb = GetComponent<Rigidbody2D>();
 	}
 
-	public void Move(float horizontal, float vertical)
+	void Update()
 	{
-		if (horizontal > 0 && facingLeft)
-			Flip();
-		else if (horizontal < 0 && !facingLeft)
-			Flip();
-
-		// Horizontal movement
-		if (horizontal != 0 && horizontal * rb.velocity.x < maxSpeed)
-		{
-			rb.AddForce(new Vector2(horizontal * moveForce, 0f));
-		}
-
 		// Slowing down
 		if (Mathf.Abs(rb.velocity.x) > 0.1f)
 		{
@@ -44,6 +33,20 @@ public class Movement : MonoBehaviour {
 		if (Mathf.Abs(rb.velocity.x) > maxSpeed)
 		{
 			rb.velocity = new Vector2(Mathf.Sign(rb.velocity.x) * maxSpeed, rb.velocity.y);
+		}
+	}
+
+	public void Move(float horizontal, float vertical)
+	{
+		if (horizontal > 0 && facingLeft)
+			Flip();
+		else if (horizontal < 0 && !facingLeft)
+			Flip();
+
+		// Horizontal movement
+		if (horizontal != 0 && horizontal * rb.velocity.x < maxSpeed)
+		{
+			rb.AddForce(new Vector2(horizontal * moveForce, 0f));
 		}
 	}
 
