@@ -54,4 +54,22 @@ public class Movement : MonoBehaviour {
         theScale.x *= -1;
         transform.localScale = theScale;
 	}
+
+	public void Flip(bool facingLeft_)
+	{
+		facingLeft = facingLeft_;
+
+		Vector3 theScale = transform.localScale;
+        
+		if (facingLeft && Mathf.Sign(theScale.x) < 0)
+		{
+			theScale.x *= -1f;
+		}
+		else if (!facingLeft && Mathf.Sign(theScale.x) > 0)
+		{
+			theScale.x *= -1f;
+		}
+
+        transform.localScale = theScale;
+	}
 }

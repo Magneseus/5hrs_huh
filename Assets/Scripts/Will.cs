@@ -6,7 +6,6 @@ public class Will : PlayerController
 {
 	public Transform weiPlacement;
 	private Vector3 oldPosition;
-	private Vector3 oldScale;
 
 	private Guard guardTarget;
 	private Wei weiPickup;
@@ -50,7 +49,6 @@ public class Will : PlayerController
 	{
 		weiPickup.PickupDisable();
 		oldPosition = weiPickup.transform.position - this.transform.position;
-		oldScale = weiPickup.transform.localScale;
 
 		weiPickup.transform.parent = weiPlacement;
 		weiPickup.transform.localPosition = new Vector3(0,0,0);
@@ -67,9 +65,7 @@ public class Will : PlayerController
 		weiPickup.transform.parent = null;
 		weiPickup.transform.position = this.transform.position + oldPosition;
 		weiPickup.transform.rotation = Quaternion.identity;
-		weiPickup.transform.localScale = oldScale;
-
-		// TODO: fix facing direction
+		weiPickup.GetComponent<Movement>().Flip((Mathf.Sign(this.transform.localScale.x) > 0 ? true : false));
 
 		weiPickedUp = false;
 	}
