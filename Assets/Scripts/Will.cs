@@ -24,7 +24,8 @@ public class Will : PlayerController
 		{
 			if (Input.GetKeyDown(KeyCode.F) && guardTarget != null)
 			{
-				guardTarget.Takedown();
+				if (!guardTarget.IsDead())
+					guardTarget.Takedown();
 			}
 			else if (Input.GetKeyDown(KeyCode.F) && weiPickup != null)
 			{

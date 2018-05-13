@@ -70,4 +70,9 @@ public class Guard : MonoBehaviour
 			Physics2D.IgnoreCollision(go.GetComponent<BoxCollider2D>(), GetComponent<BoxCollider2D>());
 		}
 	}
+
+	public bool IsDead()
+	{
+		return dead;
+	}
 }
