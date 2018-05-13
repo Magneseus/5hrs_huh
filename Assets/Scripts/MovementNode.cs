@@ -21,6 +21,7 @@ public class MovementNode : Interactable {
 
     public override void Interact(PlayerController pc)
     {
+        Debug.Log("interacting with stairs");
         // disable the player controller
         SetPlayer(pc);
 
