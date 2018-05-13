@@ -49,7 +49,7 @@ public class WorldController : MonoBehaviour
 		will.SetPlayerSelected(true);
 		wei.SetPlayerSelected(false);
 
-		Camera.main.transform.parent = will.transform;
+		will.SetCameraParent(Camera.main);
 		Camera.main.transform.localPosition = new Vector3(0f, 0f, -10f);
 		Camera.main.transform.localRotation = Quaternion.identity;
 	}
@@ -63,7 +63,7 @@ public class WorldController : MonoBehaviour
 		will.SetPlayerSelected(false);
 		wei.SetPlayerSelected(true);
 
-		Camera.main.transform.parent = wei.transform;
+		wei.SetCameraParent(Camera.main);
 		Camera.main.transform.localPosition = new Vector3(0f, 0f, -10f);
 		Camera.main.transform.localRotation = Quaternion.identity;
 	}

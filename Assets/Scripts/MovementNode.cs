@@ -26,6 +26,7 @@ public class MovementNode : Interactable {
 
         base.Interact(contains);
         contains.transform.gameObject.SetActive(false);
+        contains.SetMovementNode(this);
     }
 
     public void SetPlayer(PlayerController pc)
@@ -45,12 +46,13 @@ public class MovementNode : Interactable {
     public virtual void LeaveNodeMap()
     {
         contains.transform.gameObject.SetActive(true);
+        contains.SetMovementNode(null);
         this.SetPlayer(null);
     }
 
     public virtual void Update()
     {
-        if(!contains)
+        if(!contains || !contains.IsPlayerSelected())
         {
             return;
         }
@@ -93,6 +95,7 @@ public class MovementNode : Interactable {
         if (newNode)
         {
             newNode.SetPlayer(contains);
+            contains.SetMovementNode(newNode);
             this.SetPlayer(null);
         }
 

@@ -19,11 +19,15 @@ public class PlayerController : MonoBehaviour {
 	protected bool disableJump = false;
 
 	protected bool playerSelected = false;
+	
+	private MovementNode movementNode = null;
+	private Camera mainCam;
 
 	// Use this for initialization
 	public virtual void Start () {
 		rb = GetComponent<Rigidbody2D>();
 		move = GetComponent<Movement>();
+		mainCam = Camera.main;
 
 		// Ignore collisions with other players
 		GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
@@ -78,5 +82,40 @@ public class PlayerController : MonoBehaviour {
 	public void SetPlayerSelected(bool playerSelected)
 	{
 		this.playerSelected = playerSelected;
+	}
+	
+	public virtual void SetCameraParent(Camera cam)
+	{
+		if (movementNode == null)
+		{
+			cam.transform.parent = this.transform;
+			cam.transform.localPosition = new Vector3(0,0,-10f);
+		}	
+		else
+		{
+			cam.transform.parent = movementNode.transform;
+			cam.transform.localPosition = new Vector3(0,0,-10f);
+		}
+	}
+	
+	public void SetMovementNode(MovementNode movementNode)
+	{
+		if (movementNode != null)
+		{
+			mainCam.transform.parent = movementNode.transform;
+			mainCam.transform.localPosition = new Vector3(0,0,-10f);
+		}
+		else
+		{
+			mainCam.transform.parent = this.transform;
+			mainCam.transform.localPosition = new Vector3(0,0,-10f);
+		}
+		
+		this.movementNode = movementNode;
+	}
+	
+	public bool IsPlayerSelected()
+	{
+		return playerSelected;
 	}
 }
