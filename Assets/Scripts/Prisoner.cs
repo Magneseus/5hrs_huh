@@ -14,12 +14,27 @@ public class Prisoner : MonoBehaviour {
 
 	private Rigidbody2D rb;
 	private Movement move;
+	private BoxCollider2D box;
 
 	// Use this for initialization
 	void Start ()
 	{
 		rb = GetComponent<Rigidbody2D>();
 		move = GetComponent<Movement>();
+		box = GetComponent<BoxCollider2D>();
+
+		// Removing collisions with prisoners
+		GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+		GameObject[] guards = GameObject.FindGameObjectsWithTag("Enemy");
+		foreach (GameObject go in guards)
+		{
+			Physics2D.IgnoreCollision(box, go.GetComponent<BoxCollider2D>());
+		}
+		foreach (GameObject go in players)
+		{
+			Debug.Log(go.name);
+			Physics2D.IgnoreCollision(box, go.GetComponent<BoxCollider2D>());
+		}
 
 		StartWait();
 	}
