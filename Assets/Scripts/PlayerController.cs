@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour {
 	private Rigidbody2D rb;
 	private Movement move;
 	private bool grounded;
+	protected bool disableJump = false;
 
 	protected bool playerSelected = false;
 
@@ -56,7 +57,7 @@ public class PlayerController : MonoBehaviour {
 				rb.sharedMaterial = null;
 
 			// Jumping
-			if (Input.GetButtonDown("Jump") && grounded)
+			if (!disableJump && Input.GetButtonDown("Jump") && grounded)
 			{
 				rb.AddForce(new Vector2(0f, jumpForce));
 				rb.sharedMaterial = airMaterial;

@@ -59,6 +59,8 @@ public class Will : PlayerController
 		float throwDirection = -Mathf.Sign(this.transform.localScale.x);
 
 		
+		weiPickedUp = false;
+		disableJump = false;
 	}
 
 	private void PickupWei()
@@ -72,6 +74,7 @@ public class Will : PlayerController
 		weiPickup.transform.localScale = new Vector3(1,1,1);
 
 		weiPickedUp = true;
+		disableJump = true;
 	}
 
 	private void DropWei()
@@ -84,5 +87,6 @@ public class Will : PlayerController
 		weiPickup.GetComponent<Movement>().Flip((Mathf.Sign(this.transform.localScale.x) > 0 ? true : false));
 
 		weiPickedUp = false;
+		disableJump = false;
 	}
 }
