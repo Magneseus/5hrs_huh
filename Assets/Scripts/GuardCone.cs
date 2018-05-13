@@ -5,6 +5,10 @@ using UnityEngine;
 public class GuardCone : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		Debug.Log("Tag: " + other.tag);
+		if (other.tag == "Player")
+		{
+			// detection code here
+			Debug.Log("other.name");
+		}
 	}
 }

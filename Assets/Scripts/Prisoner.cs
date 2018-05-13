@@ -32,7 +32,6 @@ public class Prisoner : MonoBehaviour {
 		}
 		foreach (GameObject go in players)
 		{
-			Debug.Log(go.name);
 			Physics2D.IgnoreCollision(box, go.GetComponent<BoxCollider2D>());
 		}
 
