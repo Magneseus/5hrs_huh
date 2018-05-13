@@ -14,6 +14,22 @@ public class Wei : PlayerController {
 		base.Update();
 	}
 
+	public void VentDisable()
+	{
+		PickupDisable();
+		GetComponentInChildren<SpriteRenderer>().enabled = false;
+		GetComponentInChildren<WillPickup>().enabled = false;
+		GetComponentInChildren<BoxCollider2D>().enabled = false;
+	}
+
+	public void VentEnable()
+	{
+		PickupReset();
+		GetComponentInChildren<SpriteRenderer>().enabled = true;
+		GetComponentInChildren<WillPickup>().enabled = true;
+		GetComponentInChildren<BoxCollider2D>().enabled = true;
+	}
+
 	public void PickupDisable()
 	{
 		GetComponent<BoxCollider2D>().enabled = false;
