@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour {
         
         if(Input.GetKeyUp(KeyCode.Q) && interactable != null)
         {
+            Debug.Log("interacting with " + interactable);
             interacting = true;
             interactable.Interact(this);
         }
@@ -54,6 +55,11 @@ public class PlayerController : MonoBehaviour {
 	{
 		
 	}
+
+    public Interactable GetInteractable()
+    {
+        return interactable;
+    }
 
     public void SetInteractable(Interactable interact)
     {
