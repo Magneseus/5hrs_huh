@@ -19,4 +19,13 @@ public class WillPickup : MonoBehaviour {
 		}
 	}
 
+	void OnTriggerExit2D(Collider2D other)
+	{
+		if (other.tag == "Player" && other.name == "Will")
+		{
+			if (!other.GetComponent<Will>().IsWeiPickedUp())
+				other.GetComponent<Will>().SetWei(null);
+		}
+	}
+
 }

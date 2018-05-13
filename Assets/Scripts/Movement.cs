@@ -10,6 +10,8 @@ public class Movement : MonoBehaviour {
 	private Rigidbody2D rb;
 	private bool facingLeft = true;
 
+	private bool ragdoll = false;
+
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody2D>();
@@ -17,22 +19,25 @@ public class Movement : MonoBehaviour {
 
 	void Update()
 	{
-		// Slowing down
-		if (Mathf.Abs(rb.velocity.x) > 0.1f)
+		if (!ragdoll)
 		{
-			rb.AddForce(new Vector2(Mathf.Sign(rb.velocity.x) * -1f * slowForce, 0f));
-		}
+			// Slowing down
+			if (Mathf.Abs(rb.velocity.x) > 0.1f)
+			{
+				rb.AddForce(new Vector2(Mathf.Sign(rb.velocity.x) * -1f * slowForce, 0f));
+			}
 
-		// Stopping
-		if (Mathf.Abs(rb.velocity.x) <= 0.1f)
-		{
-			rb.velocity = new Vector2(0f, rb.velocity.y);
-		}
-		
-		// Capping speed
-		if (Mathf.Abs(rb.velocity.x) > maxSpeed)
-		{
-			rb.velocity = new Vector2(Mathf.Sign(rb.velocity.x) * maxSpeed, rb.velocity.y);
+			// Stopping
+			if (Mathf.Abs(rb.velocity.x) <= 0.1f)
+			{
+				rb.velocity = new Vector2(0f, rb.velocity.y);
+			}
+			
+			// Capping speed
+			if (Mathf.Abs(rb.velocity.x) > maxSpeed)
+			{
+				rb.velocity = new Vector2(Mathf.Sign(rb.velocity.x) * maxSpeed, rb.velocity.y);
+			}
 		}
 	}
 
@@ -43,11 +48,14 @@ public class Movement : MonoBehaviour {
 		else if (horizontal < 0 && !facingLeft)
 			Flip();
 
-		// Horizontal movement
-		if (horizontal != 0 && horizontal * rb.velocity.x < maxSpeed)
+		if (!ragdoll)
 		{
-			rb.AddForce(new Vector2(horizontal * moveForce, 0f));
-		}
+			// Horizontal movement
+			if (horizontal != 0 && horizontal * rb.velocity.x < maxSpeed)
+			{
+				rb.AddForce(new Vector2(horizontal * moveForce, 0f));
+			}
+		}	
 	}
 
 	public void Flip()
@@ -74,5 +82,21 @@ public class Movement : MonoBehaviour {
 		}
 
         transform.localScale = theScale;
+	}
+
+	void OnCollisionEnter2D(Collision2D collision)
+	{
+		if (ragdoll)
+		{
+			ragdoll = false;
+			rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+			transform.rotation = Quaternion.identity;
+		}
+	}
+
+	public void Ragdoll()
+	{
+		ragdoll = true;
+		rb.constraints = RigidbodyConstraints2D.None;
 	}
 }

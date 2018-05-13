@@ -51,6 +51,7 @@ public class WorldController : MonoBehaviour
 
 		Camera.main.transform.parent = will.transform;
 		Camera.main.transform.localPosition = new Vector3(0f, 0f, -10f);
+		Camera.main.transform.localRotation = Quaternion.identity;
 	}
 
 	void SetPlayerWei()
@@ -64,5 +65,6 @@ public class WorldController : MonoBehaviour
 
 		Camera.main.transform.parent = wei.transform;
 		Camera.main.transform.localPosition = new Vector3(0f, 0f, -10f);
+		Camera.main.transform.localRotation = Quaternion.identity;
 	}
 }

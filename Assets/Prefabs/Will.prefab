@@ -193,6 +193,7 @@ MonoBehaviour:
   interacting: 0
   nodeMoved: 0
   weiPlacement: {fileID: 4200682456275358}
+  throwStrength: 500
 --- !u!114 &114835664362425120
 MonoBehaviour:
   m_ObjectHideFlags: 1
