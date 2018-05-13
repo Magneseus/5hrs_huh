@@ -7,6 +7,8 @@ public class Prisoner : MonoBehaviour {
 	public float activeVariance = 2f;
 	public float dormantPeriod = 5f;
 	public float dormantVariance = 10f;
+	public Transform wallCheck;
+
 	private float waitTime = 0f;
 	private float direction = 1f;
 	private bool isDormant = true;
@@ -45,6 +47,18 @@ public class Prisoner : MonoBehaviour {
 		if (!isDormant)
 		{
 			move.Move(direction, 0f);
+		}
+
+		// If we're not player controlled, look for walls
+		// Goomba movement
+		if (wallCheck != null)
+		{
+			// Checking for ground
+			if (Physics2D.Linecast(transform.position, wallCheck.position, 1 << LayerMask.NameToLayer("Ground")))
+			{
+				direction *= -1f;
+				move.Flip();
+			}
 		}
 	}
 

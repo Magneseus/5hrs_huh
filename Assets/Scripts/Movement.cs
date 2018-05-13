@@ -47,7 +47,7 @@ public class Movement : MonoBehaviour {
 		}
 	}
 
-	void Flip()
+	public void Flip()
 	{
 		facingLeft = !facingLeft;
 		Vector3 theScale = transform.localScale;
