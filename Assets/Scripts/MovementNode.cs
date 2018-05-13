@@ -109,4 +109,22 @@ public class MovementNode : Interactable {
         if (contains)
             contains.nodeMoved = false;
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Player")
+        {
+            PlayerController pc = collision.GetComponent<PlayerController>();
+            pc.SetInteractable(this);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "Player")
+        {
+            PlayerController pc = collision.GetComponent<PlayerController>();
+            pc.SetInteractable(null);
+        }
+    }
 }
