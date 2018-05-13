@@ -45,6 +45,13 @@ public class Will : PlayerController
 		weiPickup = wei;
 	}
 
+	private void ThrowWei()
+	{
+		float throwDirection = -Mathf.Sign(this.transform.localScale.x);
+
+		// TODO: throwing
+	}
+
 	private void PickupWei()
 	{
 		weiPickup.PickupDisable();

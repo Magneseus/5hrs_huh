@@ -49,6 +49,7 @@ public class Guard : MonoBehaviour
 		move.enabled = false;
 
 		// Disable vision cone
+		GetComponentInChildren<GuardCone>().DisableConeSprite();
 		GetComponentInChildren<GuardCone>().enabled = false;
 		GetComponentInChildren<PolygonCollider2D>().enabled = false;
 
