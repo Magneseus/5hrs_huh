@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4217063063606980}
-  - component: {fileID: 114696622586671982}
+  - component: {fileID: 114201173757747806}
   m_Layer: 0
   m_Name: World Controller
   m_TagString: Untagged
@@ -40,7 +40,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114696622586671982
+--- !u!114 &114201173757747806
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -48,6 +48,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 1986272281814738}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb621efe851746e40b98328be119f9d2, type: 3}
+  m_Script: {fileID: 11500000, guid: 6b9865a2378c5d04c81731d60fcdb499, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
