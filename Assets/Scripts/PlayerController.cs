@@ -50,11 +50,6 @@ public class PlayerController : MonoBehaviour {
         }
 	}
 
-	void FixedUpdate()
-	{
-		
-	}
-
     public void SetInteractable(Interactable interact)
     {
         interactable = interact;
