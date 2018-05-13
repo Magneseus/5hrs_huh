@@ -45,6 +45,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1158245340276472
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4698358622245952}
+  - component: {fileID: 61780691018926960}
+  - component: {fileID: 114798149166267800}
+  m_Layer: 0
+  m_Name: Will Pickup
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1285304562917806
 GameObject:
   m_ObjectHideFlags: 0
@@ -68,7 +85,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1106827947286844}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.465, z: 0}
+  m_LocalPosition: {x: 0, y: -0.4678, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4607576004324458}
@@ -99,8 +116,22 @@ Transform:
   m_Children:
   - {fileID: 4508532400997402}
   - {fileID: 4284282341187538}
+  - {fileID: 4698358622245952}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4698358622245952
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1158245340276472}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4607576004324458}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &50417465757323164
 Rigidbody2D:
@@ -147,6 +178,42 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5662996, y: 0.89748883}
   m_EdgeRadius: 0
+--- !u!61 &61780691018926960
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1158245340276472}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.0026800632, y: 0.01876223}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.412765, y: 1.2948325}
+  m_EdgeRadius: 0
+--- !u!114 &114798149166267800
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1158245340276472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c0105ce3ef1fc043a920493201a241a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114879815304532714
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -160,8 +227,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpForce: 220
   groundLoc: {fileID: 4284282341187538}
-  interacting: 0
   airMaterial: {fileID: 6200000, guid: 2d43cc95d4f4182428f71cd8486f12ec, type: 2}
+  interacting: 0
+  nodeMoved: 0
 --- !u!114 &114884077604772788
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -173,8 +241,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2e4c2ada0131074c8249ed5b9216b4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveForce: 500
-  slowForce: 3
+  moveForce: 100
+  slowForce: 10
   maxSpeed: 2
 --- !u!212 &212845088450302332
 SpriteRenderer:

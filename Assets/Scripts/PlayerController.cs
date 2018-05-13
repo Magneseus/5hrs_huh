@@ -8,7 +8,9 @@ public class PlayerController : MonoBehaviour {
 	public PhysicsMaterial2D airMaterial;
 
     private Interactable interactable = null;
+	[HideInInspector]
     public bool interacting = false;
+	[HideInInspector]
 	public bool nodeMoved = false;
 	
 	private Rigidbody2D rb;
