@@ -13,4 +13,20 @@ public class Wei : PlayerController {
 	public override void Update () {
 		base.Update();
 	}
+
+	public void PickupDisable()
+	{
+		GetComponent<BoxCollider2D>().enabled = false;
+		GetComponent<Rigidbody2D>().simulated = false;
+		GetComponent<Movement>().enabled = false;
+		GetComponent<Wei>().enabled = false;
+	}
+
+	public void PickupReset()
+	{
+		GetComponent<BoxCollider2D>().enabled = true;
+		GetComponent<Rigidbody2D>().simulated = true;
+		GetComponent<Movement>().enabled = true;
+		GetComponent<Wei>().enabled = true;
+	}
 }

@@ -7,6 +7,7 @@ TagManager:
   - Vent Overlay
   - Enemy
   - Prisoner
+  - Enemy Takedown
   layers:
   - Default
   - TransparentFX
