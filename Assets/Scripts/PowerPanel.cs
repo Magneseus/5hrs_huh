@@ -23,6 +23,8 @@ public class PowerPanel : Interactable
     {
         on = !on;
 
+        SetPower(on);
+
         foreach(Interactable i in powers)
         {
             i.SetPower(!i.powered); 
