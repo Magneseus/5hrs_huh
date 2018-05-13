@@ -17,20 +17,38 @@ public class Vent : MovementNode {
     }
 
     public override void LeaveNodeMap()
-    {
-        base.LeaveNodeMap();
-        ventMap.SetActive(false);
+    { 
+        if(powered)
+        {
+            base.LeaveNodeMap();
+            ventMap.SetActive(false);
+        }
     }
 
     public override void Interact(PlayerController pc)
     {
+        if(pc.name == "Will")
+        {
+            SetPower(true);
+            pc.interacting = false;
+            return;
+        }
+
+        // wei
+
+        if(!powered)
+        {
+            pc.interacting = false;
+            return;
+        }
+
         base.Interact(pc);
         ventMap.SetActive(true);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Player" && collision.name == "Wei")
+        if(collision.tag == "Player")
         {
             PlayerController pc = collision.GetComponent<PlayerController>();
             pc.SetInteractable(this);

@@ -22,13 +22,10 @@ public class MovementNode : Interactable {
     public override void Interact(PlayerController pc)
     {
         // disable the player controller
-
         SetPlayer(pc);
 
         base.Interact(contains);
         contains.transform.gameObject.SetActive(false);
-
-
     }
 
     public void SetPlayer(PlayerController pc)

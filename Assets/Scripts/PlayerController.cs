@@ -64,6 +64,11 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
+    public Interactable GetInteractable()
+    {
+        return interactable;
+    }
+
     public void SetInteractable(Interactable interact)
     {
         interactable = interact;
