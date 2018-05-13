@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour {
 	private Movement move;
 	private bool grounded;
 
+	private bool playerSelected = false;
+
 	// Use this for initialization
 	public virtual void Start () {
 		rb = GetComponent<Rigidbody2D>();
@@ -32,35 +34,43 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	public virtual void Update () {
-		float vertical = Input.GetAxis("Vertical");
-		float horizontal = Input.GetAxis("Horizontal");
-        
-        if(Input.GetKeyUp(KeyCode.Q) && interactable != null)
-        {
-            interacting = true;
-            interactable.Interact(this);
-        }
+		if (playerSelected)
+		{
+			float vertical = Input.GetAxis("Vertical");
+			float horizontal = Input.GetAxis("Horizontal");
+			
+			if(Input.GetKeyUp(KeyCode.Q) && interactable != null)
+			{
+				interacting = true;
+				interactable.Interact(this);
+			}
 
-		// Horizontal Movement
-		move.Move(horizontal, 0f);
+			// Horizontal Movement
+			move.Move(horizontal, 0f);
 
-		// Checking for ground
-		grounded = Physics2D.Linecast(transform.position, groundLoc.position, 1 << LayerMask.NameToLayer("Ground"));
-		
-		// Resetting the physics material
-		if (grounded)
-			rb.sharedMaterial = null;
+			// Checking for ground
+			grounded = Physics2D.Linecast(transform.position, groundLoc.position, 1 << LayerMask.NameToLayer("Ground"));
+			
+			// Resetting the physics material
+			if (grounded)
+				rb.sharedMaterial = null;
 
-		// Jumping
-        if (Input.GetButtonDown("Jump") && grounded)
-        {
-            rb.AddForce(new Vector2(0f, jumpForce));
-			rb.sharedMaterial = airMaterial;
-        }
+			// Jumping
+			if (Input.GetButtonDown("Jump") && grounded)
+			{
+				rb.AddForce(new Vector2(0f, jumpForce));
+				rb.sharedMaterial = airMaterial;
+			}
+		}
 	}
 
     public void SetInteractable(Interactable interact)
     {
         interactable = interact;
     }
+
+	public void SetPlayerSelected(bool playerSelected)
+	{
+		this.playerSelected = playerSelected;
+	}
 }

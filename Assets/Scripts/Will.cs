@@ -49,7 +49,7 @@ public class Will : PlayerController
 	{
 		float throwDirection = -Mathf.Sign(this.transform.localScale.x);
 
-		// TODO: throwing
+		
 	}
 
 	private void PickupWei()
