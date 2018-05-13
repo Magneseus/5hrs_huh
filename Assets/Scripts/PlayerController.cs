@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour {
 
     private Interactable interactable = null;
     public bool interacting = false;
+	public bool nodeMoved = false;
 	
 	private Rigidbody2D rb;
 	private Movement move;

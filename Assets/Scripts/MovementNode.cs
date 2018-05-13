@@ -67,24 +67,28 @@ public class MovementNode : Interactable {
             return;
         }
         // moving up
-        else if(Input.GetButtonDown("Vertical") && Mathf.Sign(Input.GetAxis("Vertical")) > 0) 
+        else if (!contains.nodeMoved && Input.GetButtonDown("Vertical") && Mathf.Sign(Input.GetAxis("Vertical")) > 0) 
         {
             newNode = north;
+            contains.nodeMoved = true;
         }
         // moving down
-        else if (Input.GetButtonDown("Vertical") && Mathf.Sign(Input.GetAxis("Vertical")) < 0)
+        else if (!contains.nodeMoved && Input.GetButtonDown("Vertical") && Mathf.Sign(Input.GetAxis("Vertical")) < 0)
         {
             newNode = south;
+            contains.nodeMoved = true;
         }
         // moving right
-        else if (Input.GetButtonDown("Horizontal") && Mathf.Sign(Input.GetAxis("Horizontal")) > 0)
+        else if (!contains.nodeMoved && Input.GetButtonDown("Horizontal") && Mathf.Sign(Input.GetAxis("Horizontal")) > 0)
         {
             newNode = east;
+            contains.nodeMoved = true;
         }
         // moving left
-        else if (Input.GetButtonDown("Horizontal") && Mathf.Sign(Input.GetAxis("Horizontal")) < 0)
+        else if (!contains.nodeMoved && Input.GetButtonDown("Horizontal") && Mathf.Sign(Input.GetAxis("Horizontal")) < 0)
         {
             newNode = west;
+            contains.nodeMoved = true;
         }
 
         contains.interacting = false;
@@ -94,5 +98,15 @@ public class MovementNode : Interactable {
             newNode.SetPlayer(contains);
             this.SetPlayer(null);
         }
+
+        StartCoroutine("NodeWait");
+    }
+
+    IEnumerator NodeWait()
+    {
+        yield return new WaitForEndOfFrame();
+        
+        if (contains)
+            contains.nodeMoved = false;
     }
 }
