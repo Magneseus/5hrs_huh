@@ -14,6 +14,13 @@ public class Guard : MonoBehaviour
 	void Start ()
 	{
 		move = GetComponent<Movement>();
+
+		// Ignore collision with other guards
+		GameObject[] guards = GameObject.FindGameObjectsWithTag("Enemy");
+		foreach (GameObject go in guards)
+		{
+			Physics2D.IgnoreCollision(go.GetComponent<BoxCollider2D>(), GetComponent<BoxCollider2D>());
+		}
 	}
 	
 	// Update is called once per frame

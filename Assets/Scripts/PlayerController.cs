@@ -21,6 +21,13 @@ public class PlayerController : MonoBehaviour {
 	public virtual void Start () {
 		rb = GetComponent<Rigidbody2D>();
 		move = GetComponent<Movement>();
+
+		// Ignore collisions with other players
+		GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+		foreach (GameObject go in players)
+		{
+			Physics2D.IgnoreCollision(go.GetComponent<BoxCollider2D>(), GetComponent<BoxCollider2D>());
+		}
 	}
 	
 	// Update is called once per frame
